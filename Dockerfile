@@ -2,8 +2,8 @@ FROM rust:1-bullseye as ccbuilder
 
 RUN apt-get update && apt-get upgrade -y
 
+COPY ./ccompiler/ /
 WORKDIR /ccompiler
-COPY ./ccompiler/ .
 
 RUN cargo build --release
 
