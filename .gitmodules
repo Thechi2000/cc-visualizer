@@ -1,3 +1,3 @@
 [submodule "ccompiler"]
 	path = ccompiler
-	url = git@github.com/Thechi2000/ccompiler.git
+	url = https://github.com/Thechi2000/ccompiler.git
