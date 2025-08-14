@@ -4,26 +4,35 @@ import { compile } from "@/actions/compiler";
 import { MermaidChart } from "@/components/chart";
 import { useEffect, useRef, useState } from "react";
 import styles from "./main.module.css";
+import { Editor } from "@monaco-editor/react";
 
 export default function Home() {
   const [graph, setGraph] = useState<string | null>(null);
+
+  const editorRef = useRef<any>(null);
 
   useEffect(() => {
     compile("rtl", code).then(setGraph);
   }, []);
 
-  const area = useRef<HTMLTextAreaElement>(null);
-
   return (
     <>
       <button
         className={styles.compileButton}
-        onClick={() => compile("rtl", area.current?.value!).then(setGraph)}
+        onClick={() =>
+          compile("rtl", editorRef.current!.getValue()).then(setGraph)
+        }
       >
         Compile !
       </button>
       <div className={styles.main}>
-        <textarea className={styles.editor} ref={area} defaultValue={code} />
+        <Editor
+          height="90vh"
+          defaultLanguage="c"
+          defaultValue={code}
+          theme="vs-dark"
+          onMount={(editor) => (editorRef.current = editor)}
+        />
         <div className={styles.chart}>
           {graph ? <MermaidChart chart={graph} /> : <></>}
         </div>
