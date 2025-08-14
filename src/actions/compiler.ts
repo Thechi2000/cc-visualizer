@@ -1,3 +1,5 @@
+"use server";
+
 import { execSync } from "node:child_process";
 import { assert } from "node:console";
 import fs from "node:fs/promises";

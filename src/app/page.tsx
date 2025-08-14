@@ -1,8 +1,17 @@
+"use client";
+
 import { compile } from "@/actions/compiler";
 import { MermaidChart } from "@/components/chart";
+import { useEffect, useState } from "react";
 
-export default async function Home() {
-  return <MermaidChart chart={await compile("rtl", code)} />;
+export default function Home() {
+  const [graph, setGraph] = useState<string | null>(null);
+
+  useEffect(() => {
+    compile("rtl", code).then(setGraph);
+  }, []);
+
+  return graph ? <MermaidChart chart={graph} /> : <></>;
 }
 
 const code = `int main() {
