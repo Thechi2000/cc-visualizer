@@ -2,7 +2,8 @@
 
 import { compile } from "@/actions/compiler";
 import { MermaidChart } from "@/components/chart";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import styles from "./main.module.css";
 
 export default function Home() {
   const [graph, setGraph] = useState<string | null>(null);
@@ -11,7 +12,24 @@ export default function Home() {
     compile("rtl", code).then(setGraph);
   }, []);
 
-  return graph ? <MermaidChart chart={graph} /> : <></>;
+  const area = useRef<HTMLTextAreaElement>(null);
+
+  return (
+    <>
+      <button
+        className={styles.compileButton}
+        onClick={() => compile("rtl", area.current?.value!).then(setGraph)}
+      >
+        Compile !
+      </button>
+      <div className={styles.main}>
+        <textarea className={styles.editor} ref={area} defaultValue={code} />
+        <div className={styles.chart}>
+          {graph ? <MermaidChart chart={graph} /> : <></>}
+        </div>
+      </div>
+    </>
+  );
 }
 
 const code = `int main() {
