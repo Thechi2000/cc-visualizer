@@ -16,6 +16,18 @@ export default function Home() {
     compile("rtl", editorRef.current!.getValue()).then(setGraph);
   };
 
+  useEffect(() => {
+    if (window) {
+      window.addEventListener("keydown", (event) => {
+        if (event.ctrlKey && event.key === "s") {
+          refreshGraph();
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      });
+    }
+  }, []);
+
   return (
     <>
       <div className={styles.main}>
