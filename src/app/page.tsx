@@ -3,7 +3,7 @@
 import { compile } from "@/actions/compiler";
 import { MermaidChart } from "@/components/chart";
 import { useEffect, useRef, useState } from "react";
-import styles from "./main.module.css";
+import styles from "./main.module.scss";
 import { Editor } from "@monaco-editor/react";
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <>
       <button
-        className={styles.compileButton}
+        className={styles.compile}
         onClick={() =>
           compile("rtl", editorRef.current!.getValue()).then(setGraph)
         }
@@ -26,8 +26,12 @@ export default function Home() {
         Compile !
       </button>
       <div className={styles.main}>
+        {/* <h1>
+            CC Visualizer
+        </h1> */}
         <Editor
-          height="90vh"
+          className={styles.editor}
+          width="45vw"
           defaultLanguage="c"
           defaultValue={code}
           theme="vs-dark"

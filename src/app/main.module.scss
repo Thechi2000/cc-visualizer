@@ -1,0 +1,59 @@
+.editor {
+  min-width: 45vw;
+  max-width: 45vw;
+  padding: 1rem 0rem;
+  background-color: #1e1e1e;
+
+  border: 0;
+  border-radius: 1rem;
+}
+
+.chart {
+  display: inline-block;
+  position: relative;
+  min-width: 45vw;
+  max-width: 45vw;
+
+  overflow: hidden;
+}
+
+.main {
+  display: flex;
+  width: calc(100vw - 5rem);
+  height: calc(100vh - 2rem);
+
+  max-width: calc(100vw - 5rem);
+  max-height: calc(100vh - 5rem);
+
+  justify-content: space-around;
+  padding: 2rem;
+}
+
+.compile {
+  position: fixed;
+  bottom: 3.5rem;
+  left: 5rem;
+  z-index: 50;
+
+  align-items: center;
+  background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #ffffff;
+  display: flex;
+  font-family: Phantomsans, sans-serif;
+  font-size: 20px;
+  justify-content: center;
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 19px 24px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+}
