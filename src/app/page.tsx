@@ -12,42 +12,32 @@ export default function Home() {
 
   const editorRef = useRef<any>(null);
 
-  useEffect(() => {
-    compile("rtl", code).then(setGraph);
-  }, []);
+  const refreshGraph = () => {
+    compile("rtl", editorRef.current!.getValue()).then(setGraph);
+  };
 
   return (
     <>
-      <button
-        className={styles.compile}
-        onClick={() =>
-          compile("rtl", editorRef.current!.getValue()).then(setGraph)
-        }
-      >
-        Compile !
-      </button>
       <div className={styles.main}>
         {/* <h1>
             CC Visualizer
         </h1> */}
-        <Editor
-          className={styles.editor}
-          width="45vw"
-          height="90vh"
-          defaultLanguage="c"
-          defaultValue={code}
-          theme="vs-dark"
-          onMount={(editor) => (editorRef.current = editor)}
-        />
-        <TransformWrapper>
-          <TransformComponent
-            wrapperStyle={{
-              maxWidth: "45vw",
-              minHeight: "90vh",
-              maxHeight: "90vh",
+        <div className={styles.editor}>
+          <button className={styles.compile} onClick={refreshGraph}>
+            Compile !
+          </button>
+          <Editor
+            defaultLanguage="c"
+            defaultValue={code}
+            theme="vs-dark"
+            onMount={(editor) => {
+              editorRef.current = editor;
+              refreshGraph();
             }}
-            wrapperClass={styles.chart}
-          >
+          />
+        </div>
+        <TransformWrapper>
+          <TransformComponent wrapperClass={styles.chart}>
             {graph ? <MermaidChart chart={graph} /> : <></>}
           </TransformComponent>
         </TransformWrapper>
