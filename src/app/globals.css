@@ -1,3 +1,7 @@
 :root {
   background-color: rgb(41, 41, 41);
 }
+
+body {
+  margin: 0;
+}
