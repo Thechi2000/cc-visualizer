@@ -5,6 +5,7 @@ import { MermaidChart } from "@/components/chart";
 import { useEffect, useRef, useState } from "react";
 import styles from "./main.module.scss";
 import { Editor } from "@monaco-editor/react";
+import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 
 export default function Home() {
   const [graph, setGraph] = useState<string | null>(null);
@@ -32,14 +33,24 @@ export default function Home() {
         <Editor
           className={styles.editor}
           width="45vw"
+          height="90vh"
           defaultLanguage="c"
           defaultValue={code}
           theme="vs-dark"
           onMount={(editor) => (editorRef.current = editor)}
         />
-        <div className={styles.chart}>
-          {graph ? <MermaidChart chart={graph} /> : <></>}
-        </div>
+        <TransformWrapper>
+          <TransformComponent
+            wrapperStyle={{
+              maxWidth: "45vw",
+              minHeight: "90vh",
+              maxHeight: "90vh",
+            }}
+            wrapperClass={styles.chart}
+          >
+            {graph ? <MermaidChart chart={graph} /> : <></>}
+          </TransformComponent>
+        </TransformWrapper>
       </div>
     </>
   );

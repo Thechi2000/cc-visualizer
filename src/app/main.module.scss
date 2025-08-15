@@ -14,6 +14,15 @@
   min-width: 45vw;
   max-width: 45vw;
 
+  background-color: #1e1e1e;
+  border-radius: 1rem;
+
+  cursor: pointer;
+
+  g {
+    cursor: grab;
+  }
+
   overflow: hidden;
 }
 
@@ -26,6 +35,7 @@
   max-height: calc(100vh - 5rem);
 
   justify-content: space-around;
+  align-items: center;
   padding: 2rem;
 }
 
