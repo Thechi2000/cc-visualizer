@@ -36,4 +36,32 @@
     padding: 13px 15px;
     cursor: pointer;
   }
+
+  .separator {
+    width: 2px;
+    border-radius: 1px;
+    background-color: #00000048;
+    height: 2em;
+  }
+
+  .selector {
+    height: 44px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .arrow {
+    border: solid #00000079;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    margin: 0 7px;
+
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
 }

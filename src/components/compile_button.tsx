@@ -6,8 +6,14 @@ export default function CompileButton({
   onCompile: () => void;
 }) {
   return (
-    <div className={styles.compile} onClick={onCompile}>
-      Compile !
+    <div className={styles.compile}>
+      <span className={styles.text} onClick={onCompile}>
+        Compile !
+      </span>
+      <div className={styles.separator} />
+      <div className={styles.selector}>
+        <div className={styles.arrow} />
+      </div>
     </div>
   );
 }
