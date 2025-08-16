@@ -1,0 +1,39 @@
+@import "consts.scss";
+
+.compile {
+  @extend .borderbox;
+  @extend .no-select;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  background-color: #ddd;
+  position: fixed;
+  z-index: 10;
+
+  transform: translate(
+    calc($component-width - 3rem - 100%),
+    calc($component-height - 2rem - 100%)
+  );
+
+  background-image: linear-gradient(144deg, #ff1e1e, #fc3737 50%, #fc9700);
+  border: 0;
+  border-radius: 8px;
+
+  font-family: Phantomsans, sans-serif;
+  font-size: 20px;
+  color: #ffffff;
+
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 140px;
+
+  touch-action: manipulation;
+  white-space: nowrap;
+
+  .text {
+    padding: 13px 15px;
+    cursor: pointer;
+  }
+}

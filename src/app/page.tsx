@@ -3,9 +3,10 @@
 import { compile } from "@/actions/compiler";
 import { MermaidChart } from "@/components/chart";
 import { useEffect, useRef, useState } from "react";
-import styles from "./main.module.scss";
+import styles from "@/styles/main.module.scss";
 import { Editor } from "@monaco-editor/react";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
+import CompileButton from "@/components/compile_button";
 
 export default function Home() {
   const [graph, setGraph] = useState<string | null>(null);
@@ -35,9 +36,7 @@ export default function Home() {
             CC Visualizer
         </h1> */}
         <div className={styles.editor}>
-          <button className={styles.compile} onClick={refreshGraph}>
-            Compile !
-          </button>
+          <CompileButton onCompile={refreshGraph} />
           <Editor
             defaultLanguage="c"
             defaultValue={code}

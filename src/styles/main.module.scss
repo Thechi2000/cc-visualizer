@@ -1,0 +1,51 @@
+@import "consts.scss";
+
+.component {
+  min-width: $component-width;
+  width: $component-width;
+  max-width: $component-width;
+  min-height: $component-height;
+  height: $component-height;
+  max-height: $component-height;
+
+  background-color: #1e1e1e;
+  border-radius: 1rem;
+
+  @extend .borderbox;
+}
+
+.main {
+  @extend .borderbox;
+  width: 100dvw;
+  height: 100dvh;
+  max-width: 100dvw;
+  max-height: 100dvh;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  padding: 2rem;
+
+  .editor {
+    @extend .component;
+
+    padding: 1rem 0rem 1rem 1rem;
+
+    border: 0;
+    border-radius: 1rem;
+  }
+
+  .chart {
+    @extend .component;
+
+    display: inline-block;
+    position: relative;
+
+    cursor: pointer;
+
+    g {
+      cursor: grab;
+    }
+  }
+}
