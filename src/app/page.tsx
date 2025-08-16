@@ -1,6 +1,6 @@
 "use client";
 
-import { compile } from "@/actions/compiler";
+import { CompilationStage, compile } from "@/actions/compiler";
 import { MermaidChart } from "@/components/chart";
 import { useEffect, useRef, useState } from "react";
 import styles from "@/styles/main.module.scss";
@@ -10,24 +10,30 @@ import CompileButton from "@/components/compile_button";
 
 export default function Home() {
   const [graph, setGraph] = useState<string | null>(null);
+  const [compilationStage, setCompilationStage] =
+    useState<CompilationStage>("rtl");
 
   const editorRef = useRef<any>(null);
 
   const refreshGraph = () => {
-    compile("rtl", editorRef.current!.getValue()).then(setGraph);
+    compile(compilationStage, editorRef.current!.getValue()).then(setGraph);
   };
 
   useEffect(() => {
-    if (window) {
-      window.addEventListener("keydown", (event) => {
-        if (event.ctrlKey && event.key === "s") {
-          refreshGraph();
-          event.preventDefault();
-          event.stopPropagation();
-        }
-      });
+    function refresh(event: KeyboardEvent) {
+      if (event.ctrlKey && event.key === "s") {
+        refreshGraph();
+        event.preventDefault();
+        event.stopPropagation();
+      }
     }
-  }, []);
+
+    if (window) {
+      window.addEventListener("keydown", refresh);
+
+      return () => window.removeEventListener("keydown", refresh);
+    }
+  }, [compilationStage]);
 
   return (
     <>
@@ -36,7 +42,11 @@ export default function Home() {
             CC Visualizer
         </h1> */}
         <div className={styles.editor}>
-          <CompileButton onCompile={refreshGraph} />
+          <CompileButton
+            onCompile={refreshGraph}
+            compilationStage={compilationStage}
+            setCompilationStage={setCompilationStage}
+          />
           <Editor
             defaultLanguage="c"
             defaultValue={code}

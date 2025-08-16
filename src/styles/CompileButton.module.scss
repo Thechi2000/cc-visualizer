@@ -1,14 +1,15 @@
 @import "consts.scss";
 
+$radius: 8px;
+
 .compile {
   @extend .borderbox;
   @extend .no-select;
 
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
 
-  background-color: #ddd;
   position: fixed;
   z-index: 10;
 
@@ -16,10 +17,6 @@
     calc($component-width - 3rem - 100%),
     calc($component-height - 2rem - 100%)
   );
-
-  background-image: linear-gradient(144deg, #ff1e1e, #fc3737 50%, #fc9700);
-  border: 0;
-  border-radius: 8px;
 
   font-family: Phantomsans, sans-serif;
   font-size: 20px;
@@ -32,36 +29,78 @@
   touch-action: manipulation;
   white-space: nowrap;
 
-  .text {
-    padding: 13px 15px;
-    cursor: pointer;
-  }
-
-  .separator {
-    width: 2px;
-    border-radius: 1px;
-    background-color: #00000048;
-    height: 2em;
-  }
-
-  .selector {
-    height: 44px;
-    cursor: pointer;
-
+  .button {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    z-index: 10;
+
+    background-color: #ddd;
+    background-image: linear-gradient(144deg, #ff1e1e, #fc3737 50%, #fc9700);
+    border: 0;
+    border-radius: $radius;
+
+    .text {
+      padding: 13px 15px;
+      cursor: pointer;
+    }
+
+    .separator {
+      width: 2px;
+      border-radius: 1px;
+      background-color: #00000048;
+      height: 2em;
+    }
+
+    .selector {
+      height: 44px;
+      cursor: pointer;
+
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .arrow {
+      border: solid #00000079;
+      border-width: 0 2px 2px 0;
+      display: inline-block;
+      padding: 3px;
+      margin: 0 7px;
+
+      -webkit-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
   }
 
-  .arrow {
-    border: solid #00000079;
-    border-width: 0 2px 2px 0;
-    display: inline-block;
-    padding: 3px;
-    margin: 0 7px;
+  .menu {
+    @extend .borderbox;
+    padding: 0.5rem;
+    margin-right: 1rem;
 
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    transform: rotate(45deg);
+    background-color: #69696950;
+
+    border: 0px;
+    border-radius: $radius $radius 0 0;
+
+    width: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+
+    visibility: hidden;
+    &.opened {
+      visibility: visible;
+    }
+
+    > * {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.3rem;
+    }
   }
 }

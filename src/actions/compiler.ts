@@ -6,7 +6,7 @@ import fs from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-type CompilationStage = "rtl" | "ssa";
+export type CompilationStage = "rtl" | "ssa";
 
 export async function compile(
   stage: CompilationStage,
